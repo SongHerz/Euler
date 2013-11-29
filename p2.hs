@@ -6,5 +6,7 @@ primeList :: [Integer]
 primeList = 2: filter (\x -> isPrime primeList x) [3,5..]
 
 maxPrimeFactor :: Integer -> Integer
-maxPrimeFactor x = if (sqrt.fromIntegral $ x) <= min_prime then min_prime else maxPrimeFactor $ x / min_prime
-    where min_prime = head $ dropWhile (\prime -> x `mod` prime /= 0) primeList
+maxPrimeFactor x = if (sqrt.fromIntegral $ x) <= fromIntegral min_prime_factor
+                     then min_prime_factor
+                     else max min_prime_factor (maxPrimeFactor $ x `div` min_prime_factor)
+    where min_prime_factor = head $ dropWhile (\prime -> x `mod` prime /= 0) primeList
