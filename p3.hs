@@ -24,14 +24,17 @@ maxPrimeFactor x = if (sqrt.fromIntegral $ x) <= fromIntegral min_prime_factor
  - The minimal factor of a composite must be a prime, and our prime list is in ascending order.
  - Later prime factor must be not less than older ones, and we only have to extract the last prime factor.
  -}
-primeFactorList :: Integer -> [Integer]
-primeFactorList x = if x == min_prime_factor
+i_primeFactorList :: [Integer] -> Integer -> [Integer]
+i_primeFactorList primeList x = if x == min_prime_factor
                      then [min_prime_factor]
-                     else min_prime_factor : (primeFactorList $ x `div` min_prime_factor)
-    where min_prime_factor = head $ dropWhile (\prime -> x `mod` prime /= 0) primeList
+                     else min_prime_factor : (i_primeFactorList new_prime_list (x `div` min_prime_factor))
+    where new_prime_list = dropWhile (\prime -> x `mod` prime /= 0) primeList 
+          min_prime_factor = head $ new_prime_list
+
+
+primeFactorList x = i_primeFactorList primeList x
 
 maxPrimeFactor x = last $ primeFactorList x
-
 
 
 main = do
