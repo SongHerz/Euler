@@ -7,12 +7,12 @@
 isPrime :: [Integer] -> Integer -> Bool
 isPrime primeList x = ( all (\y -> x `mod` y /= 0) factor_candi)
     where factor_candi = takeWhile ( \y -> y <= x_cell) primeList
-          x_cell = toInteger.floor.sqrt.fromIntegral $ x
+          x_cell = floor.sqrt.fromIntegral $ x
 
 primeList :: [Integer]
 primeList = 2: filter (\x -> isPrime primeList x) [3,5..]
 
-{-
+{- This is the initial version before reading thread 3.
 maxPrimeFactor :: Integer -> Integer
 maxPrimeFactor x = if (sqrt.fromIntegral $ x) <= fromIntegral min_prime_factor
                      then min_prime_factor
