@@ -11,3 +11,6 @@ maxPrimeFactor x = if (sqrt.fromIntegral $ x) <= fromIntegral min_prime_factor
                      then min_prime_factor
                      else max min_prime_factor (maxPrimeFactor $ x `div` min_prime_factor)
     where min_prime_factor = head $ dropWhile (\prime -> x `mod` prime /= 0) primeList
+
+
+main = print $ maxPrimeFactor 600851475143
