@@ -5,7 +5,7 @@
  - and the prime list increases dynamically at run time.
  -}
 isPrime :: [Integer] -> Integer -> Bool
-isPrime primeList x = ( all (\y -> x `mod` y /= 0) factor_candi)
+isPrime primeList x = all (\y -> x `mod` y /= 0) factor_candi
     where factor_candi = takeWhile ( \y -> y <= x_cell) primeList
           x_cell = floor.sqrt.fromIntegral $ x
 
