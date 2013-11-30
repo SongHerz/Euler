@@ -34,4 +34,6 @@ maxPrimeFactor x = last $ primeFactorList x
 
 
 
-main = print $ maxPrimeFactor 600851475143
+main = do
+    print $ primeFactorList 600851475143
+    print $ maxPrimeFactor 600851475143
